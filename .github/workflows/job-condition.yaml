@@ -1,0 +1,25 @@
+name: jo condition
+
+on:
+    push:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Build
+              run: echo "Building the project..."
+    
+    test:
+        if: ${{ success() }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Test
+              run: echo "Running tests..."
+
+    deploy:
+        if: github.ref == 'refs/heads/main' 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy
+              run: echo "Deploying...2"
